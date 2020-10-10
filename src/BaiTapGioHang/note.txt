@@ -1,0 +1,17 @@
+Button details: nam trong component `SanPham`
+Data nam trong `state` o trong component `BaiTapGioHang`
+=> Handle method thay doi state
+
+Cac buoc xac dinh:
+1. State dang luu o dau?
+2. Nut events o dau?
+=> Link 2 cai component lai voi nhau bang cach truyen props cho nhau. State o dau setState() o cho do. State
+
+GIO HANG (MODAL)
+Ban dau gio hang is an empty array
+
+Gio hang co duoc luu trong state hay ko? -> Ban dau chua nen phai luu vao de khi thay doi thi se luu vao
+
+Button "Them gio hang" dang nam trong component SanPham.
+
+
