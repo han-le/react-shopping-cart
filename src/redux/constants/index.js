@@ -1,0 +1,4 @@
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const THAY_DOI_SO_LUONG = "TANG_GIAM_SO_LUONG";
+export const CHI_TIET_SAN_PHAM = "DETAILS_PRODUCT";
+export const THEM_SAN_PHAM = "ADD_PRODUCT";

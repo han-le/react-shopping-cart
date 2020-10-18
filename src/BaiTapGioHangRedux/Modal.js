@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import CardItem from "./CardItem";
+import { connect } from "react-redux";
 
-export default class Modal extends Component {
-  // Modal Cart ko co array san pham => pass danh sach san pham from BaiTapGioHang.js vao
-  //this.props.prop_DanhSachGioHang => Nhan lai cai array tu BaiTapGioHang.js thong qua prop
+class Modal extends Component {
+  //FIRST THING FIRST : Import data of Danh Sach San Pham Check Out
 
   renderCardList = () => {
-    return this.props.prop_DanhSachGioHang.map((item, index) => {
+    return this.props.prop_danhSachGioHangCheckOut.map((item, index) => {
       return (
         <CardItem
           key={index}
           cart_item={item}
-          prop_modal_delete={this.props.prop_DeleteEvent}
           prop_TangGiam_Modal={this.props.prop_TangGiam_BaiTapGioHang}
         />
       );
@@ -36,7 +35,7 @@ export default class Modal extends Component {
           >
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Giỏ hàng</h5>
+                <h5 className="modal-title">Component: Modal</h5>
                 <button
                   type="button"
                   className="close"
@@ -62,10 +61,6 @@ export default class Modal extends Component {
                   <tbody>
                     {/* Each row is a component. */}
                     {this.renderCardList()}
-
-                    {/* Ham renderCardList da return <CardItem key={index} />; */}
-                    {/* <CardItem />
-                    <CardItem /> */}
                   </tbody>
                 </table>
               </div>
@@ -89,6 +84,11 @@ export default class Modal extends Component {
   }
 }
 
-/*Modal can co danh sach san pham.
- * Ban dau chua co DS san pham => dung props truyen vao
- */
+//FIRST THING FIRST : Import data of Danh Sach San Pham Check Out. Dung ham mapStateToProps
+const mapStateToProps = (state) => {
+  return {
+    prop_danhSachGioHangCheckOut: state.gioHangReducer.danhSachGioHang,
+  };
+};
+
+export default connect(mapStateToProps, null)(Modal);

@@ -14,4 +14,16 @@ Gio hang co duoc luu trong state hay ko? -> Ban dau chua nen phai luu vao de khi
 
 Button "Them gio hang" dang nam trong component SanPham.
 
+Luu state o BaiTapGioHang.js boi vi Component nay chua giao dien UI va la parent cua tat ca cac component
+State luu o dau thi viet ham tang, giam, them, xoa, sua o do (vi state o dau thi set state o do)
+
+--------
+? Tai sao phai dung redux?
+=> Quan ly state tot hon, don gian hon so voi React
+
+? Redux dung de lam gi? 
+La cong cu giup React quan ly State
+
+npm install redux react-redux 
+
 

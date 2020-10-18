@@ -14,51 +14,59 @@
 import React, { Component } from "react";
 import Modal from "./Modal";
 import SanPham from "./SanPham";
+import { connect } from "react-redux";
 
-export default class BaiTapGioHang extends Component {
-  //No need any more but now grab from store
+const mapStateToProps = (state) => {
+  return {
+    //key:values
+    //key la props cua component, value la state duoc luu tru tren store
+    danhSachSanPham: state.gioHangReducer.danhSachSanPham, //Lay danh sach san pham
+    sanPhamChiTiet_reduce: state.gioHangReducer.sanPhamChiTiet,
+    danhSachGioHang: state.gioHangReducer.danhSachGioHang,
+  };
+};
 
-  // danhSachSanPham = [
-  //   {
-  //     maSanPham: "VIN",
-  //     tenSanPham: "Vinsmart",
-  //     hinhAnh: "./img/vsphone.jpg",
-  //     manHinh: `AMOLED, 6.2", Full HD+`,
-  //     heDieuHanh: "Android 9.0 (Pie)",
-  //     cameraTruoc: "20 MP",
-  //     cameraSau: "Chính 10 MP & Phụ 8 MP, 5 MP",
-  //     ram: "4 GB",
-  //     rom: "6 GB",
-  //     donGia: 200,
-  //   },
-  //   {
-  //     maSanPham: "GN",
-  //     tenSanPham: "Galaxy Note",
-  //     hinhAnh: "./img/meizuphone.jpg",
-  //     manHinh: `AMOLED, 6.2", Full HD+`,
-  //     heDieuHanh: "Android 9.0 (Pie)",
-  //     cameraTruoc: "25 MP",
-  //     cameraSau: "Chính 20 MP & Phụ 8 MP, 5 MP",
-  //     ram: "8 GB",
-  //     rom: "16 GB",
-  //     donGia: 500,
-  //   },
-  //   {
-  //     maSanPham: "IP",
-  //     tenSanPham: "iPhone 10",
-  //     hinhAnh: "./img/applephone.jpg",
-  //     manHinh: `AMOLED, 6.2", Full HD+`,
-  //     heDieuHanh: "IOS",
-  //     cameraTruoc: "20 MP",
-  //     cameraSau: "Chính 30 MP & Phụ 8 MP, 5 MP",
-  //     ram: "64 GB",
-  //     rom: "86 GB",
-  //     donGia: 1000,
-  //   },
-  // ];
+class BaiTapGioHang extends Component {
+  danhSachSanPham = [
+    {
+      maSanPham: "VIN",
+      tenSanPham: "Vinsmart",
+      hinhAnh: "./img/vsphone.jpg",
+      manHinh: `AMOLED, 6.2", Full HD+`,
+      heDieuHanh: "Android 9.0 (Pie)",
+      cameraTruoc: "20 MP",
+      cameraSau: "Chính 10 MP & Phụ 8 MP, 5 MP",
+      ram: "4 GB",
+      rom: "6 GB",
+      donGia: 200,
+    },
+    {
+      maSanPham: "GN",
+      tenSanPham: "Galaxy Note",
+      hinhAnh: "./img/meizuphone.jpg",
+      manHinh: `AMOLED, 6.2", Full HD+`,
+      heDieuHanh: "Android 9.0 (Pie)",
+      cameraTruoc: "25 MP",
+      cameraSau: "Chính 20 MP & Phụ 8 MP, 5 MP",
+      ram: "8 GB",
+      rom: "16 GB",
+      donGia: 500,
+    },
+    {
+      maSanPham: "IP",
+      tenSanPham: "iPhone 10",
+      hinhAnh: "./img/applephone.jpg",
+      manHinh: `AMOLED, 6.2", Full HD+`,
+      heDieuHanh: "IOS",
+      cameraTruoc: "20 MP",
+      cameraSau: "Chính 30 MP & Phụ 8 MP, 5 MP",
+      ram: "64 GB",
+      rom: "86 GB",
+      donGia: 1000,
+    },
+  ];
 
   // Mac dinh khi load trang web
-
   state = {
     sanPhamChiTiet: {
       maSanPham: "1",
@@ -75,7 +83,6 @@ export default class BaiTapGioHang extends Component {
     danhSachGioHang: [], //Pass qua cho Modal.js
   };
 
-  //==========Button: Show details
   handleDetailButton = (sanPham) => {
     // console.log("show details" + sanPham);
 
@@ -186,15 +193,10 @@ export default class BaiTapGioHang extends Component {
   };
 
   renderDanhSachSanPham = () => {
-    //Lay array data tu props
-    return this.props.danhSachSanPham.map((sanPham, index) => {
+    return this.danhSachSanPham.map((sanPham, index) => {
       return (
-        <div className="col-sm-4">
-          <SanPham
-            sanPham={sanPham}
-            handleDetail={this.handleDetailButton} //handleDetail is the property,  handleDetailButton is the method just wrote
-            prop_themSanPham={this.handleThemSanPham} //render trong Modal.js
-          />
+        <div className="col-sm-4" key={index}>
+          <SanPham sanPham={sanPham} />
         </div>
       );
     });
@@ -216,7 +218,10 @@ export default class BaiTapGioHang extends Component {
       <div>
         <div>
           <section className="container">
-            <h3 className="title text-center">Bài tập giỏ hàng</h3>
+            <h3 className="title text-center">
+              Component: BaiTapGioHang (Main)
+            </h3>
+
             <div className="container text-center my-2">
               <button
                 className="btn btn-danger "
@@ -230,12 +235,8 @@ export default class BaiTapGioHang extends Component {
               <div className="row">{this.renderDanhSachSanPham()}</div>
             </div>
 
-            {/* CART MODAL */}
-            <Modal
-              prop_DanhSachGioHang={this.state.danhSachGioHang}
-              prop_DeleteEvent={this.handleDelete}
-              prop_TangGiam_BaiTapGioHang={this.handleTangGiamSoLuong}
-            />
+            {/* MODAL : San pham check out */}
+            <Modal />
 
             {/* PHONE'S SPECS */}
             <div className="row">
@@ -254,31 +255,31 @@ export default class BaiTapGioHang extends Component {
                   <tbody>
                     <tr>
                       <td>Phone's name</td>
-                      <td>{this.state.sanPhamChiTiet.tenSanPham}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.tenSanPham}</td>
                     </tr>
                     <tr>
                       <td>Màn hình</td>
-                      <td>{this.state.sanPhamChiTiet.manHinh}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.manHinh}</td>
                     </tr>
                     <tr>
                       <td>Hệ điều hành</td>
-                      <td>{this.state.sanPhamChiTiet.heDieuHanh}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.heDieuHanh}</td>
                     </tr>
                     <tr>
                       <td>Camera trước</td>
-                      <td>{this.state.sanPhamChiTiet.cameraSau}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.cameraSau}</td>
                     </tr>
                     <tr>
                       <td>Camera sau</td>
-                      <td>{this.state.sanPhamChiTiet.cameraSau}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.cameraSau}</td>
                     </tr>
                     <tr>
                       <td>RAM</td>
-                      <td>{this.state.sanPhamChiTiet.ram}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.ram}</td>
                     </tr>
                     <tr>
                       <td>ROM</td>
-                      <td>{this.state.sanPhamChiTiet.rom}</td>
+                      <td>{this.props.sanPhamChiTiet_reduce.rom}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -290,3 +291,5 @@ export default class BaiTapGioHang extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(BaiTapGioHang);

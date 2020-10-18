@@ -1,5 +1,6 @@
 import React from "react";
 import BaiTapGioHang from "./BaiTapGioHang/BaiTapGioHang";
+import BaiTapGioHangRedux from "./BaiTapGioHangRedux/BaiTapGioHang.js";
 // import DemoConditionalAndState from "./DemoLogin/DemoConditionalAndState";
 // import BaiTapChonMauXe from "./BaiTapChonMauXe";
 // import DemoCourse from "./ListAndKeys/DemoCourse";
@@ -12,6 +13,8 @@ import BaiTapGioHang from "./BaiTapGioHang/BaiTapGioHang";
 // import Home from "./baiTapChiaComponent/Home";
 // import DemoDataBinding from "./DataBinding/DemoDataBinding";
 // import FunctionEvent from "./HandleEvents/FunctionEvent";
+import Home from "./UserManagement";
+
 function App() {
   return (
     <div>
@@ -25,7 +28,11 @@ function App() {
       {/* <BaiTapChonMauXe /> */}
       {/* <DemoCourse /> */}
       {/* <DemoProps /> */}
-      <BaiTapGioHang />
+      {/* <BaiTapGioHang /> */}
+
+      {/* <BaiTapGioHangRedux /> */}
+
+      <Home />
     </div>
   );
 }
