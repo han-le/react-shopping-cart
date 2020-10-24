@@ -6,13 +6,22 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => {
   return {
     props_userList: state.prop_userReducer.userList,
+    keyword: state.prop_userReducer.keyword,
   };
 };
 
 class Users extends Component {
   //Ham duyet mang tra ve component UserList
   renderTable = () => {
-    const userList = this.props.props_userList;
+    let userList = this.props.props_userList;
+
+    //====== SEARCH ITEM
+    let keyword = this.props.keyword.toLowerCase();
+    userList = userList.filter((item) => {
+      const itemName = item.name.toLowerCase();
+      return itemName.indexOf(keyword) !== -1;
+    });
+
     //Duyet mang thong qua UserList
     //Tai sao duyet bang map hay hon forEach? => Vi no tra lai 1 mang. forEach khong tra ve mang moi nen ban dau phai tao 1 mang empty roi moi lan loop thi cong don vao
     return userList.map((item) => {

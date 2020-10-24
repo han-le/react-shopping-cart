@@ -1,6 +1,8 @@
 import React from "react";
 import BaiTapGioHang from "./BaiTapGioHang/BaiTapGioHang";
 import BaiTapGioHangRedux from "./BaiTapGioHangRedux/BaiTapGioHang.js";
+import FormValidation from "./form-validation";
+import LifeCycle from "./life-cycle";
 // import DemoConditionalAndState from "./DemoLogin/DemoConditionalAndState";
 // import BaiTapChonMauXe from "./BaiTapChonMauXe";
 // import DemoCourse from "./ListAndKeys/DemoCourse";
@@ -32,7 +34,10 @@ function App() {
 
       {/* <BaiTapGioHangRedux /> */}
 
-      <Home />
+      {/* <Home /> */}
+      {/* <FormValidation /> */}
+
+      <LifeCycle />
     </div>
   );
 }

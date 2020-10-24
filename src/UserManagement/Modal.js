@@ -61,9 +61,9 @@ class Modal extends Component {
 
   //Click submit to send information
   handleSubmit = (e) => {
-    e.preventDefault();
-    //==> //Giup khong load lai trang de test
-    console.log(e);
+    e.preventDefault(); //Giup khong load lai trang de test
+    console.log(this.refs);
+    this.refs.btnClose.click(); //Set tu dong close modal if click submit button
     this.props.submitUser(this.state);
   };
 
@@ -89,6 +89,7 @@ class Modal extends Component {
                 className="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                ref="btnClose" //Tu them vao => DOM in REACT
               >
                 <span aria-hidden="true">×</span>
               </button>
